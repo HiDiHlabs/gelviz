@@ -1,1 +1,1 @@
-from . import gelviz
+from . import basic
