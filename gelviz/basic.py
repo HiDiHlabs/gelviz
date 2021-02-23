@@ -11,7 +11,6 @@ from matplotlib.patches import PathPatch
 import matplotlib.cm as cm
 import matplotlib
 import tabix
-from numpy.random import rand
 import math
 
 def plotGenes(genes_bed,
@@ -511,7 +510,7 @@ def plotGeneExpressionEqualDist(genes_bed,
 
     :param genes_bed: :class:`pybedtools.BedTool` object containing gene
         regions.
-    :type genes_bed: :class:`pybedtools.BedTool
+    :type genes_bed: :class:`pybedtools.BedTool`
     :param gene_mid_points: list of integer values containing center positions
         of genes.
     :type gene_mid_points: list
@@ -660,7 +659,7 @@ def plotGeneExpressionEqualDist(genes_bed,
                 x_positions = [ (bplot_pos+
                                  (i-.5)*
                                  ((2*extension)/(float(n_groups)*3))) for i in
-                               list(rand(len(expression_values))) ]
+                               list(np.random.rand(len(expression_values))) ]
                 plt.plot(x_positions, expression_values, "k.", markersize=3)
 
             g_id = None
