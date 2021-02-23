@@ -218,7 +218,7 @@ def determineYPosGene(genes_bed,
                       region_size,
                       distance_ratio):
     '''Function that determines the max y position for gene plotting via
-        function plotGenes.
+    function plotGenes.
 
     :param genes_bed: :class:`pybedtools.BedTool` object containing genes to be
         plotted.
@@ -315,7 +315,7 @@ def plotGeneExpression(genes_bed,
                        g2_id="normal",
                        plot_gene_names=True):
     '''Function for plotting paired gene expression (e.g. tumor and normal) on a
-        gene region scale retaining the position of genes.
+    gene region scale retaining the position of genes.
 
     :param genes_bed: :class:`pybedtools.BedTool` object containing TXstart,
         and TXend of genes.
@@ -506,7 +506,7 @@ def plotGeneExpressionEqualDist(genes_bed,
                                 plot_points=False,
                                 alpha=.5):
     '''Function for plotting grouped gene expression (e.g. tumor and normal) on
-        a gene region scale equalizing the position of genes.
+    a gene region scale equalizing the position of genes.
 
     :param genes_bed: :class:`pybedtools.BedTool` object containing gene
         regions.
@@ -977,7 +977,7 @@ def plotCNVsHeat(cnvs_bed,
 
 def readACESeqAsBed(input_filename):
     '''Function that reads CNVs from ACESeq ("*most_important*") files and
-        converts them to pybedtools.BedTool object
+    converts them to pybedtools.BedTool object
 
     :param input_filename: Full path to ACESeq "most_important" file
     :type input_filename: str
@@ -1258,7 +1258,7 @@ def plotTX(chrom_r,
            color="k",
            ax=None):
     '''Function that plots a translocation event as a bar, showing the part
-        of the genome that is translocated.
+    of the genome that is translocated.
 
     :param chrom_r: Chromosome of the region to be plotted.
     :type chrom_r: str
@@ -1539,7 +1539,7 @@ def distanceEqualizer(genomic_segments,
                       color="k",
                       ax = None):
     '''Function that plots arcs from unequal distances of genomic segments to
-        equal distances.
+    equal distances.
 
     :param genomic_segments: List of segments for which distances shall be
         equalized (each segment is of the form [<chrom>, <start>, <end>])
