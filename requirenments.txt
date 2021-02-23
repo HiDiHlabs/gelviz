@@ -3,4 +3,3 @@ pybedtools
 pandas
 numpy
 pytabix
-math
