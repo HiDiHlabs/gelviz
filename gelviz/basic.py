@@ -1338,8 +1338,6 @@ def plotRegions(regions,
     for region in regions:
         if(not edgecolor):
             current_color = color
-            if(c % 2 == 0):
-                current_color = "k"
             rect = Rectangle([int(region[1]), -.75],
                              int(region[2])-int(region[1]),
                              1.5,
@@ -1349,8 +1347,6 @@ def plotRegions(regions,
             c += 1
         else:
             current_color = color
-            if(c % 2 == 0):
-                current_color = "k"
             rect = Rectangle([int(region[1]), -.75],
                              int(region[2])-int(region[1]),
                              1.5,
@@ -1576,12 +1572,12 @@ def distanceEqualizer(genomic_segments,
 
     region_mid_points = []
     for e in genomic_segments:
-        if(e[1] < start):
-            region_mid_points += [start+(e[2]-start)/2]
-        elif(e[2] > end):
-            region_mid_points += [e[1]+(end-e[1])/2]
+        if(int(e[1]) < start):
+            region_mid_points += [start+(int(e[2])-start)/2]
+        elif(int(e[2]) > end):
+            region_mid_points += [int(e[1])+(end-int(e[1]))/2]
         else:
-            region_mid_points += [e[1]+(e[2]-e[1])/2]
+            region_mid_points += [int(e[1])+(int(e[2])-int(e[1]))/2]
 
     for i in range(len(region_mid_points)):
         region_mid_point = region_mid_points[i]
