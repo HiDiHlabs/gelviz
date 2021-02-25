@@ -1,5 +1,13 @@
 # gelviz: A python python package for plotting genomic elements.
 
+gelviz is a python package for plotting a wide range of genomic elements in a genome browser-like fashion. It comes with basic plotting functions that can be used for plotting different kind of genomic elements.
+
+# Example
+
+The following example was created using published genomics and epigenomics data from [10.5281/zenodo.4557352](https://zenodo.org/record/4557352). The data originates from the publication [F. Haller, M. Bieg, R. Will, et al.. Enhancer hijacking activates oncogenic transcription factor NR4A3 in acinic cell carcinomas of the salivary glands. Nature Communications volume 10, Article number: 368 (2019)](https://www.nature.com/articles/s41467-018-08069-x)
+
+![example](pics/salivary_gland_locus_acicc.jpeg)
+
 # Acknowledgements
 This package was implemented during my time at the *German Cancer Research Center* in the group of *Theoretical Bioinformatics* headed by Prof. Dr. Roland Eils, where i was part of the core bioinformatics team of the *Heidelberg Institute of Personalized Oncology (HIPO)*. Further refinment and final upload to PyPI was done during my time at *Charite, Universitaetsmedizin Berlin, Berlin Institute of Health (BIH) in the Department of Digital Health* headed by Prof. Roland Eils.
 
