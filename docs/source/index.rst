@@ -11,8 +11,8 @@ Welcome to gelviz's documentation!
    :caption: Contents:
 
    intro
-   gelviz
    example
+   gelviz
    acknowledgements
    license
 
