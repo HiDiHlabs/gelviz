@@ -8,6 +8,8 @@ The following example was created using published genomics and epigenomics data 
 
 ![example](jupyter_notebooks/pics/salivary_gland_locus_acicc.jpeg)
 
+Please check the [jupyter notebook](jupyter_notebooks/gelviz_example.ipynb) for details on how the above figure was created.
+
 # Acknowledgements
 This package was implemented during my time at the *German Cancer Research Center* in the group of *Theoretical Bioinformatics* headed by Prof. Dr. Roland Eils, where i was part of the core bioinformatics team of the *Heidelberg Institute of Personalized Oncology (HIPO)*. Further refinment and final upload to PyPI was done during my time at *Charite, Universitaetsmedizin Berlin, Berlin Institute of Health (BIH) in the Department of Digital Health* headed by Prof. Roland Eils.
 
