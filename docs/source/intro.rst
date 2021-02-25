@@ -11,4 +11,4 @@ gelviz is part of the Python Package Index (PyPI) and can be installed via
 
 Alternatively you can clone the sources via the project's github page
 
-`<https://github.com/HiDiHlabs/gelviz>_
+`<https://github.com/HiDiHlabs/gelviz>`_
