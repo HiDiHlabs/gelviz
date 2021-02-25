@@ -6,6 +6,8 @@ The data originates from the publication `<https://www.nature.com/articles/s4146
 
 .. image:: ../../jupyter_notebooks/pics/salivary_gland_locus_acicc.jpeg
 
+The above figure was created using the following code:
+
 .. code-block:: python
 
     import pyBigWig
