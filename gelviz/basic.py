@@ -329,24 +329,30 @@ def plotGeneExpression(genes_bed,
     :param expression_df_g2: :class:`pandas.Dataframe` containing the expression
         values of g2 samples (columns: sample ids; index: gene ids)
     :type expression_df_g2: :class:`pandas.DataFrame`
+    :param gene_names_map: Dictionary with keys: ENSEMBL GENE IDs, and values:
+        HUGO GENE SYMBOLs.
+    :type gene_names_map: dict.
     :param blacklist: Set containing gene ids not to be plotted, default to
         None.
     :type blacklist: set, optional
     :param ax: Axis used for plotting, defaults to None.
     :type ax: :class:`matplotlib.axes._subplots.AxesSubplot`, optional
-    :param legend: If True legend is plotted, False otherwise, defaults to
+    :param plot_legend: If True legend is plotted, False otherwise, defaults to
         False.
-    :type legend: bool
+    :type plot_legend: bool
     :param color_g1: Color used for plotting g1 samples expression, defaults to
         "#fb8072".
-    :type: color_g1: str, optional
+    :type color_g1: str, optional
     :param color_g2: Color used for plotting g2 samples expression, defaults to
         "#80b1d3".
-    :type: color_g2: str, optional
+    :type color_g2: str, optional
     :param g1_id: ID of g1 used for legend plotting, defaults to "tumor".
     :type g1_id: str, optional
     :param g2_id: ID of g2 used for legend plotting, defaults to "normal".
     :type g2_id: str, optional
+    :param plot_gene_names: If True, the HUGO GENE SYMBOLs will be shown, else
+        the GENE SYMBOLs are hidden.
+    :type plot_gene_names: bool.
 
     :return: Axis on which plot was placed.
     :rtype: :class:`matplotlib.axes._subplots.AxesSubplot`
@@ -514,11 +520,14 @@ def plotGeneExpressionEqualDist(genes_bed,
     :param gene_mid_points: list of integer values containing center positions
         of genes.
     :type gene_mid_points: list
-    :param list region: List containing the region to be plotted
+    :param region: List containing the region to be plotted
         ([<chrom>, <start>, <end>]).
-    :type list_region: list
+    :type region: list
     :param groups: List of lists containing the IDs of the different groups.
     :type groups: list
+    :param gene_names_map: Dictionary with keys: ENSEMBL GENE IDs, and values:
+        HUGO GENE SYMBOLs.
+    :type gene_names_map: dict.
     :param expression_df: class:`pandas.DataFrame` object containing the
         expression values of all samples (columns: sample ids; index: gene ids).
     :type expression_df: class:`pandas.DataFrame`
@@ -527,8 +536,8 @@ def plotGeneExpressionEqualDist(genes_bed,
     :type blacklist: set, optional
     :param ax: (default: None) Axis used for plotting, defaults to None.
     :type ax: :class:`matplotlib.axes._subplots.AxesSubplot`, optional
-    :param legend: If True plot legend, False otherwise, defaults to False.
-    :type legend: bool, optional
+    :param plot_legend: If True plot legend, False otherwise, defaults to False.
+    :type plot_legend: bool, optional
     :param colors: List of colors used for plotting samples expression. The
         number of colors must be the same as the number of groups, defaults to
         None.
@@ -1148,9 +1157,6 @@ def plotMethylationProfileHeat(methylation_bed,
         n_unmeth = int(element[4])
         current_bin = int((position-start)/bin_size)
 
-        if(counter % 1000 == 0):
-            print(counter)
-            print(n_meth+n_unmeth)
         counter += 1
 
         binned_meth_calls[current_bin][0] += n_meth
@@ -1323,6 +1329,9 @@ def plotRegions(regions,
     :param color: Color of the rectangles representing the regions to be
         plotted, defaults to "#cbebc4".
     :type color: str, optional
+    :param edge_color: Color of region edge. If False, no edge is plotted,
+        defaults to False.
+    :type edge_color: str, optional
     :param alpha: Alpha value of the rectangle, representing the region to be
         plotted, defaults to 1.
     :type alpha: float, optional.
