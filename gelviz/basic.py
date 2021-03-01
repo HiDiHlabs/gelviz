@@ -1224,6 +1224,13 @@ def plotMethylationProfile(meth_calls,
         4. Number methylated cytosines
         5. Number unmethylated cytosines
 
+        Or
+
+        1. Chromsome
+        2. Start position
+        3. end position
+        4. Beta Value
+
     :type meth_calles: iterator
     :param chrom: Chromosome of region to be plotted.
     :type chrom: str
@@ -1243,15 +1250,26 @@ def plotMethylationProfile(meth_calls,
     '''
     ax = ax if ax is not None else plt.gca()
 
-    plt.plot([ (float(m[1])+float(m[2]))/2. for m in meth_calls ],
-             [ float(m[3])/(float(m[3])+float(m[4]))
-               if not(float(m[3])+float(m[4]) == 0.)
-               else 0. for m in meth_calls],
-             color=color,
-             marker=".",
-             linestyle='None',
-             markersize=1,
-             alpha=.5)
+    n_entries = len(meth_calls[0])
+
+    if(n_entries == 5):
+        plt.plot([ (float(m[1])+float(m[2]))/2. for m in meth_calls ],
+                 [ float(m[3])/(float(m[3])+float(m[4]))
+                   if not(float(m[3])+float(m[4]) == 0.)
+                   else 0. for m in meth_calls],
+                 color=color,
+                 marker=".",
+                 linestyle='None',
+                 markersize=1,
+                 alpha=.5)
+    elif(n_entries == 4):
+        plt.plot([ (float(m[1])+float(m[2]))/2. for m in meth_calls ],
+                 [ float(m[4]) for m in m in meth_calls],
+                 color=color,
+                 marker=".",
+                 linestyle='None',
+                 markersize=1,
+                 alpha=.5)
     plt.ylim([0, 1])
     plt.xticks([], [])
     plt.xlim([start, end])
@@ -1763,3 +1781,74 @@ def plotCoordinates(chrom,
     ax.spines["left"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
+def plotLinksAsArcs(links_bed,
+                    chrom_r,
+                    start_r,
+                    end_r,
+                    lw=1,
+                    color="k",
+                    ax = None):
+    '''Function that plots links between genomic regions as arcs.
+
+    :param links_bed: Iterator, that contains bed-like structured lists with the
+        following elements:
+
+        1. Chromosome region1
+        2. Start region1
+        3. End region1
+        4. Chromosome region2
+        5. Start region2
+        6. End region2
+
+    :type links_bed: iterator
+    :param chrom_r: Chromosome of the region to be plotted.
+    :type chrom_r: str
+    :param start_r: Chromosomal start position of the region to be plotted.
+    :type start_r: int
+    :param end_r: Chromosomal end positiont of the region to be plotted.
+    :type end_r: int
+    :param color: Color of the arc, defaults to "k".
+    :type color: str, optional.
+    :param ax: Axis where the plot is drawn, defaults to None.
+    :type ax: :class:`matplotlib.axes._subplots.AxesSubplot`, optional
+
+    :return: Nothing to be returned.
+    :rtype: None
+    '''
+    ax = ax if ax is not None else plt.gca()
+
+    max_dist = 0
+    for e in links_bed:
+        link_pos1 = int(e[1])+(int(e[2])-int(e[1]))/2
+        link_pos2 = int(e[4])+(int(e[5])-int(e[4]))/2
+        distance = abs(link_pos2-link_pos1)
+
+        if(distance > max_dist):
+            max_dist = distance
+
+        mid_point = link_pos1 + (link_pos2-link_pos1)/2
+        if(link_pos2 < link_pos2):
+            mid_point = link_pos2 + (link_pos1-link_pos2)/2
+
+        vertices = [(link_pos1, 0),
+                     (mid_point, distance),
+                     (link_pos2, 0)]
+        codes = [Path.MOVETO,
+                 Path.CURVE3,
+                 Path.CURVE3]
+        path = Path(vertices,
+                    codes)
+        patch = PathPatch(path,
+                          facecolor = "None",
+                          edgecolor = color,
+                          lw = lw)
+        ax.add_patch(patch)
+
+    #ax.spines["bottom"].set_visible(False)
+    ax.spines["top"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    plt.xticks([], [])
+    plt.yticks([], [])
+    plt.xlim([start_r, end_r])
+    plt.ylim([0, max_dist/2])
